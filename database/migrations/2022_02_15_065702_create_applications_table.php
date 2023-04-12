@@ -17,8 +17,8 @@ return new class extends Migration {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->string('status');
-            $table->foreignIdFor(Customer::class)->constrained()->index();
-            $table->foreignIdFor(Plan::class)->constrained()->index();
+            $table->foreignIdFor(Customer::class)->constrained();//->index();
+            $table->foreignIdFor(Plan::class)->constrained();//->index();
             $table->string('address_1');
             $table->string('address_2')->nullable();
             $table->string('city');
