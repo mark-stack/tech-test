@@ -55,7 +55,7 @@ class Question1Test extends TestCase
         ];
 
         foreach($statusArray as $status){
-            $order_id = $status->name == ApplicationStatus::Complete
+            $order_id = $status == ApplicationStatus::Complete
                 ? Str::random(10)
                 : null;
 
@@ -85,7 +85,7 @@ class Question1Test extends TestCase
                 $this->assertTrue( gettype($firstResult->plan_name) == 'string');
                 $this->assertTrue( gettype($firstResult->state) == 'string');
                 $this->assertTrue( gettype($firstResult->plan_monthly_cost) == 'string');
-                if($status->name == ApplicationStatus::Complete){
+                if($status == ApplicationStatus::Complete){
                     $this->assertTrue( gettype($firstResult->order_id) == 'string');
                 }
                 else{
@@ -107,14 +107,14 @@ class Question1Test extends TestCase
                 $firstCustomer = $firstApplication->customer;
                 $firstMonthlyCost = "$".number_format($firstPlan->monthly_cost/100,2);
 
-                $this->assertTrue( $firstResult->application_id == $firstApplication->id);
+                $this->assertTrue( $firstResult->application_id     == $firstApplication->id);
                 $this->assertTrue( $firstResult->customer_full_name == $firstCustomer->first_name." ".$firstCustomer->last_name);
-                $this->assertTrue( $firstResult->address == $firstApplication->address_1);
-                $this->assertTrue( $firstResult->plan_type == $firstPlan->type);
-                $this->assertTrue( $firstResult->plan_name == $firstPlan->name);
-                $this->assertTrue( $firstResult->state == $firstApplication->state);
-                $this->assertTrue( $firstResult->plan_monthly_cost == $firstMonthlyCost);
-                if($status->name == ApplicationStatus::Complete){
+                $this->assertTrue( $firstResult->address            == $firstApplication->address_1);
+                $this->assertTrue( $firstResult->plan_type          == $firstPlan->type);
+                $this->assertTrue( $firstResult->plan_name          == $firstPlan->name);
+                $this->assertTrue( $firstResult->state              == $firstApplication->state);
+                $this->assertTrue( $firstResult->plan_monthly_cost  == $firstMonthlyCost);
+                if($status == ApplicationStatus::Complete){
                     $this->assertTrue( $firstResult->order_id == $firstApplication->order_id);
                 }
                 else{

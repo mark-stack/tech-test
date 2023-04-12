@@ -56,7 +56,7 @@ class Q1Controller extends Controller
 
             //If application status is 'completed', then add the field 'order_id'
             $application_status = $application->status;
-            if($application_status->name == ApplicationStatus::Complete->name){
+            if($application_status == ApplicationStatus::Complete){
                 $array = array_merge($array,['order_id' => $application->order_id]);
             }
 
